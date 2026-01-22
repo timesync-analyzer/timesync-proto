@@ -1,8 +1,12 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 message Ptp4lMetrics {
     string node = 1;
-    int64 timestamp_ms = 2;
+
+    google.protobuf.Timestamp timestamp = 2;
+
     int64 offset_ns = 3;
     int64 frequency = 4;
     int64 path_delay = 5;
@@ -11,7 +15,9 @@ message Ptp4lMetrics {
 
 message Phc2SysMetrics {
     string node = 1;
-    int64 timestamp_ms = 2;
+
+    google.protobuf.Timestamp timestamp = 2;
+
     int64 offset_ns = 3;
     int64 frequency = 4;
     int64 path_delay = 5;
@@ -54,7 +60,9 @@ message TemperatureMetrics {
 
 message SystemMetrics {
     string node = 1;
-    int64 timestamp_ms = 2;
+
+    google.protobuf.Timestamp timestamp = 2;
+
     TemperatureMetrics temperatureStats = 3;
     NetworkMetrics networkStats = 4;
     CpuMetrics cpuStats = 5;
