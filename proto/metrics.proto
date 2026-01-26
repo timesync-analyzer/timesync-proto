@@ -1,6 +1,25 @@
 syntax = "proto3";
 
+option go_package = "timesync-analyzer/protocol/generated;monitoring";
+
 import "google/protobuf/timestamp.proto";
+
+message MetricsWrapper {
+    MessageType type = 1;
+
+    oneof payload {
+        Ptp4lMetrics ptp4l = 2;
+        Phc2SysMetrics phc2sys = 3;
+        SystemMetrics system = 4;
+    }
+}
+
+enum MessageType {
+    MESSAGE_TYPE_UNSPECIFIED = 0;
+    MESSAGE_TYPE_PTP4L = 1;
+    MESSAGE_TYPE_PHC2SYS = 2;
+    MESSAGE_TYPE_SYSTEM = 3;
+}
 
 message Ptp4lMetrics {
     string node = 1;
