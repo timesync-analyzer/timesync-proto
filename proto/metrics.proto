@@ -19,6 +19,20 @@ enum MessageType {
     MESSAGE_TYPE_PTP4L = 1;
     MESSAGE_TYPE_PHC2SYS = 2;
     MESSAGE_TYPE_SYSTEM = 3;
+    MESSAGE_TYPE_NODE_INFO = 4;
+}
+
+enum NodeType {
+    NODE_TYPE_UNSPECIFIED = 0;
+    NODE_TYPE_MASTER = 1;
+    NODE_TYPE_SLAVE = 2;
+}
+
+message NodeInfo {
+    string hostname = 1;
+    string net_interface = 2;
+    string ip_address = 3;
+    NodeType node_type = 4;
 }
 
 message Ptp4lMetrics {
