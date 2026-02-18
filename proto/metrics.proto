@@ -6,11 +6,14 @@ import "google/protobuf/timestamp.proto";
 
 message MetricsWrapper {
     MessageType type = 1;
+    google.protobuf.Timestamp timestamp = 2;
+    string node_name = 3;
 
     oneof payload {
-        Ptp4lMetrics ptp4l = 2;
-        Phc2SysMetrics phc2sys = 3;
-        SystemMetrics system = 4;
+        Ptp4lMetrics ptp4l = 10;
+        Phc2SysMetrics phc2sys = 11;
+        SystemMetrics system = 12;
+        NodeInfo node_info = 13;
     }
 }
 
@@ -29,32 +32,23 @@ enum NodeType {
 }
 
 message NodeInfo {
-    string hostname = 1;
     string net_interface = 2;
     string ip_address = 3;
     NodeType node_type = 4;
 }
 
 message Ptp4lMetrics {
-    string node = 1;
-
-    google.protobuf.Timestamp timestamp = 2;
-
-    int64 offset_ns = 3;
-    int64 frequency = 4;
-    int64 path_delay = 5;
-    int32 state = 6;
+    int64 offset_ns = 1;
+    int64 frequency = 2;
+    int64 path_delay = 3;
+    int32 state = 4;
 };
 
 message Phc2SysMetrics {
-    string node = 1;
-
-    google.protobuf.Timestamp timestamp = 2;
-
-    int64 offset_ns = 3;
-    int64 frequency = 4;
-    int64 path_delay = 5;
-    int32 state = 6;
+    int64 offset_ns = 1;
+    int64 frequency = 2;
+    int64 path_delay = 3;
+    int32 state = 4;
 };
 
 message NetworkMetrics {
@@ -92,12 +86,8 @@ message TemperatureMetrics {
 };
 
 message SystemMetrics {
-    string node = 1;
-
-    google.protobuf.Timestamp timestamp = 2;
-
-    TemperatureMetrics temperatureStats = 3;
-    NetworkMetrics networkStats = 4;
-    CpuMetrics cpuStats = 5;
-    MemoryMetrics memoryStats = 6;
+    TemperatureMetrics temperatureStats = 2;
+    NetworkMetrics networkStats = 3;
+    CpuMetrics cpuStats = 4;
+    MemoryMetrics memoryStats = 5;
 };
